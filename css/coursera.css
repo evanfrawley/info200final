@@ -9,25 +9,53 @@
 
 .item {
     height: 100px;
-    width: 80%;
+    width: 90%;
     overflow: hidden;
     position: relative;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
-.item>img {
+.item>a>img {
     height: 80px;
-    width: 80px;
+    width: auto;
     float: left;
 
 
 }
 
+.text {
+    float: left;
+    display: inline-block;
+}
+
+.img {
+    height: 80px;
+    width: 80px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    margin: 8px;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+
+.img>a>img {
+    height: 90px;
+    width: auto;
+    position: absolute;
+    left: -10px;
+}
+
+
 .item>div>h3 {
     margin-top: 0;
     margin-bottom: 5px;
+    display: inline;
 
 }
-.item>div>p {
+.item>div>p>p {
     margin-top: 5px;
     margin-bottom: 5px;
 

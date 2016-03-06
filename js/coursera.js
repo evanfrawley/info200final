@@ -30,11 +30,18 @@
         var data = JSON.parse(this.responseText).elements;
         var main = document.getElementById("main");
 
-        for(var i = 0; i < 10; i++) {
+        for(var i = 0; i < 20; i++) {
             var name = data[i].name;
             var img = data[i].photoUrl;
             var description = data[i].description;
-            var domain = data[i].domainTypes[0].domainId;
+            var domains = data[i].domainTypes;
+            var domain = domains[0].domainId;
+            var subdomain = domains[0].subdomainId;
+            for(var j = 1; j < domains.length; j++){
+                domain += ", " + domains[j].domainId;
+                subdomain += ", " + domains[j].subdomainId;
+            }
+
             var type = data[i].courseType;
             var base = "https://coursera.org/";
             if(type.startsWith("v1")){
@@ -46,7 +53,13 @@
             ele.classList.add("item");
 
             var text = document.createElement("div");
+            text.classList.add("text");
 
+            var imgdiv = document.createElement("div");
+            imgdiv.classList.add("img");
+
+            var imgLink = document.createElement("a");
+            imgLink.setAttribute("href", url);
 
             var eleImg = document.createElement("img");
             eleImg.setAttribute("src", img);
@@ -55,16 +68,23 @@
             eleName.innerHTML = name;
 
             var eleDescription = document.createElement("p");
-            eleDescription.innerHTML = description + "</br>" + "Skills: " + domain;
+            //eleDescription.innerHTML = description + "</br>" + "Skills: " + domain;
+            eleDescription.innerHTML = "Skills: " + domain + " and " + subdomain + "</br>" + "Sought after by: ";
 
-            ele.onclick = url;
+
+
+
 
             text.appendChild(eleName);
             text.appendChild(eleDescription);
-            ele.appendChild(eleImg);
+            imgLink.appendChild(eleImg);
+            imgdiv.appendChild(imgLink);
+            ele.appendChild(imgdiv);
             ele.appendChild(text);
 
+
             main.appendChild(ele);
+
 
 
             //create a new div element, add in the photo, name, description, and domain, and link
