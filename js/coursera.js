@@ -12,7 +12,7 @@
     };
 
     function initCoursera() {
-        var url = "https://crossorigin.me/https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
+        var url = "https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
         //get the things to make this a specific url
         ajax(url, populate);
         console.log("2");
@@ -23,6 +23,7 @@
         var req = new XMLHttpRequest();
         req.onload = func;
         req.open("GET", url, true);
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
         req.send();
         console.log("5");
     }
