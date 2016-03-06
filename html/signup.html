@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-Up</title>
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+</head>
+<body>
+	<?php 
+		$success = true;
+		$errorMessage = " ";
+		$name = $_POST['name'];
+
+		if(isset($_POST['name'])) {
+		 if ( $_POST['name'] == '') {
+		      $errorMessage = 'Please enter your name';
+		      $success = false;
+		      header('Location: www.something.com/some.php');
+		 }
+		 else if ($success == true) {
+		   // do something with the data
+		} 
+	?>
+	<h1>Sign-Up!</h1>
+	<form method="post">
+		<label for="name">Name:</label>
+		<input id="name" value="" name="name" placeholder="Your Name"><br>
+		<label for="username">Username:</label>
+		<input id="username" value="" name="username" placeholder="Your Username"><br>
+		<label for="password">Password:</label>
+		<input id="password" type="password" value="" name="password" placeholder="Your Password"><br>
+		<label for="field">Field:</label>
+		<input id="field" value="" name="field" placeholder="Desired Field(s)"><br>
+		<label for="skills">Skills:</label>
+		<input id="skills" value="" name="skills" placeholder="Your Desired Skills"><br>
+		<button type="button" id="submit">Submit</button>
+	</form>
+    <script src="../js/signup.js" type="text/javascript"></script>
+</body>
+</html>

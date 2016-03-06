@@ -1,0 +1,34 @@
+/*
+ *  COURSERA PAGE STYLESHEET
+ *
+ */
+
+#main {
+
+}
+
+.item {
+    height: 100px;
+    width: 80%;
+    overflow: hidden;
+    position: relative;
+}
+
+.item>img {
+    height: 80px;
+    width: 80px;
+    float: left;
+
+
+}
+
+.item>div>h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+
+}
+.item>div>p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
