@@ -19,12 +19,13 @@
     }
 
     function ajax(url, func) {
-        console.log("4");
         var req = new XMLHttpRequest();
         req.onload = func;
         req.open("GET", url, true);
+
         req.setRequestHeader('Access-Control-Allow-Origin', '*');
         req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+
         req.send();
         console.log("5");
     }
