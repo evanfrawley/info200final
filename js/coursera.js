@@ -22,8 +22,8 @@
         console.log("4");
         var req = new XMLHttpRequest();
         req.onload = func;
-        req.open("GET", url, true);
         req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.open("GET", url, true);
         req.send();
         console.log("5");
     }
