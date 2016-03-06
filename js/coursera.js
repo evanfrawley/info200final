@@ -12,7 +12,7 @@
     };
 
     function initCoursera() {
-        var url = "https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
+        var url = "http://cors.io/?u=https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
         //get the things to make this a specific url
         ajax(url, populate);
         console.log("2");
@@ -23,8 +23,6 @@
         req.onload = func;
         req.open("GET", url, true);
 
-        req.setRequestHeader('Access-Control-Allow-Origin', '*');
-        req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
 
         req.send();
         console.log("5");
