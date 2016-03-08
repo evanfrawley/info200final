@@ -8,25 +8,28 @@
 
     window.onload = function () {
         initCoursera();
+        console.log("1");
     };
 
     function initCoursera() {
-
-        var url = "https://crossorigin.me/https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
+        var url = "http://cors.io/?u=https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
         //get the things to make this a specific url
-
         ajax(url, populate);
-
+        console.log("2");
     }
 
     function ajax(url, func) {
         var req = new XMLHttpRequest();
         req.onload = func;
         req.open("GET", url, true);
+
+
         req.send();
+        console.log("5");
     }
 
     function populate(){
+        console.log("3");
         var data = JSON.parse(this.responseText).elements;
         var main = document.getElementById("main");
 
@@ -71,10 +74,6 @@
             //eleDescription.innerHTML = description + "</br>" + "Skills: " + domain;
             eleDescription.innerHTML = "Skills: " + domain + " and " + subdomain + "</br>" + "Sought after by: ";
 
-
-
-
-
             text.appendChild(eleName);
             text.appendChild(eleDescription);
             imgLink.appendChild(eleImg);
@@ -84,18 +83,11 @@
 
 
             main.appendChild(ele);
-
-
-
             //create a new div element, add in the photo, name, description, and domain, and link
             //logic: if courseType.startswith(v1) -> coursera.org/course/<SLUG>
             //else -> coursera.org/learn/<SLUG>
 
         }
-
-
-
-
     }
 
 })();
