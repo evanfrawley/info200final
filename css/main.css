@@ -1933,8 +1933,8 @@ span.stButton_gradient,
   position: relative;
 }
 
-#gmap {
-  height: 350px;
+#map {
+  height: 600px;
 }
 
 .get-in-touch img {
