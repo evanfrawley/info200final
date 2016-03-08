@@ -8,6 +8,7 @@ window.onload = function () {
 };
 
 function ajax(url, func) {
+    console.log("test");
     var req = new XMLHttpRequest();
     req.onload = func;
     req.open("GET", url, true);
@@ -36,7 +37,7 @@ function loadMap() {
 }
 
 function getData() {
-    var url = "https://data.seattle.gov/resource/awnr-r8xe.json";
+    var url = "https://data.seattle.gov/resource/cnbr-qc96.json";
     ajax(url, addMap);
 }
 
@@ -44,12 +45,33 @@ function addMap() {
     var data = JSON.parse(this.responseText);
     //console.log(this.responseText);
     for (var i = 0; i < data.length; i++) {
-        var popup = "<h3>" + data[i].address + "</h3>";
-        if (data[i].website !== undefined) {
-            popup += "<br /><a href=\"" + data[i].website.url + "\">Website</a>";
+
+        var popup = "<h3>" + data[i].title + "</h3>";
+
+        if(data[i].phone_number !== undefined){
+            popup+= "</br>Phone Number: " + data[i].phone_number;
         }
-        L.marker([data[i].latitude, data[i].longitude]).addTo(map).bindPopup(popup);
+        if(data[i].wi_fi_available !== undefined){
+            popup += "</br>WiFi: " + data[i].wi_fi_available;
+        }
+        if(data[i].open_to_public !== undefined){
+            popup += "</br>Open To: " + data[i].open_to_public;
+        }
+        if (data[i].website_url !== undefined) {
+            popup += "</br><a href=\"" + data[i].website_url + "\">Website</a>";
+        }
+        if(data[i].number_of_computers !== undefined){
+            popup += "</br>Num of Computers: " + data[i].number_of_computers;
+        }
+        if(data[i].location.human_address !== undefined){
+            var fuck = data[i].location.human_address;
+            fuck = fuck.split("\"");
+            popup += "</br>Address: " + fuck[3] + ", " + fuck[7] + ", " + fuck[11];
+        }
+        if(data[i].location.latitude !== undefined){
+            L.marker([data[i].location.latitude, data[i].location.longitude]).addTo(map).bindPopup(popup);
+
+        }
 
     }
 }
-
