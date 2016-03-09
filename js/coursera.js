@@ -60,7 +60,7 @@
             if(name.includes(":")){
                 var namesplit = name.split(":");
                 name = namesplit[0];
-            } else if (name.split(":").length > 4) {
+            } else if (name.split(" ").length > 4) {
                 var namesplit = name.split(" ");
                 name = namesplit[0] + " " + namesplit[1] + " " + namesplit[2] + " " + namesplit[3];
             }
