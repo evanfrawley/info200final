@@ -37,7 +37,7 @@
 
         var allitems = document.getElementById("allitems");
 
-        for(var i = 0; i < 20; i++) {
+        for(var i = 0; i < data.length; i++) {
             var name = data[i].name;
             var img = data[i].photoUrl;
             var description = data[i].description;
