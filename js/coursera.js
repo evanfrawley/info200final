@@ -3,19 +3,22 @@
  */
 
 
-(function() {
+//(function() {
     "use strict";
 
     window.onload = function () {
         initCoursera();
-        console.log("1");
     };
 
     function initCoursera() {
-        var url = "http://cors.io/?u=https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
+        //var url = "http://cors.io/?u=https://api.coursera.org/api/courses.v1?fields=domainTypes,description,shortDescription,photoUrl";
+        //var url = "https://jsonp.afeld.me/?url=https%3A%2F%2Fapi.coursera.org%2Fapi%2Fcourses.v1%3Ffields%3DdomainTypes%2Cdescription%2CshortDescription%2CphotoUrl";
         //get the things to make this a specific url
+        //ajax(url, populate);
+        //
+        // console.log("2");
+        var url = "courses.json";
         ajax(url, populate);
-        console.log("2");
     }
 
     function ajax(url, func) {
@@ -25,13 +28,14 @@
 
 
         req.send();
-        console.log("5");
     }
 
     function populate(){
-        console.log("3");
+
+
         var data = JSON.parse(this.responseText).elements;
-        var main = document.getElementById("main");
+
+        var allitems = document.getElementById("allitems");
 
         for(var i = 0; i < 20; i++) {
             var name = data[i].name;
@@ -40,11 +44,11 @@
             var domains = data[i].domainTypes;
             var domain = domains[0].domainId;
             var subdomain = domains[0].subdomainId;
-            for(var j = 1; j < domains.length; j++){
-                domain += ", " + domains[j].domainId;
-                subdomain += ", " + domains[j].subdomainId;
+            var baseCL = ["col-xs-6", "col-sm-4", "col-d-3", "portfolio-item"];
+            for(var j = 0; j < domains.length; j++){
+                baseCL.push(domains[j].domainId);
             }
-
+            console.log(baseCL);
             var type = data[i].courseType;
             var base = "https://coursera.org/";
             if(type.startsWith("v1")){
@@ -52,42 +56,64 @@
             } else {
                 var url = base + "learn/" + data[i].slug;
             }
-            var ele = document.createElement("div");
-            ele.classList.add("item");
 
-            var text = document.createElement("div");
-            text.classList.add("text");
+            if(name.includes(":")){
+                var namesplit = name.split(":");
+                name = namesplit[0];
+            } else if (name.split(":").length > 4) {
+                var namesplit = name.split(" ");
+                name = namesplit[0] + " " + namesplit[1] + " " + namesplit[2] + " " + namesplit[3];
+            }
 
-            var imgdiv = document.createElement("div");
-            imgdiv.classList.add("img");
+
+
+            var item = document.createElement("div");
+            for(var k = 0; k < baseCL.length; k++){
+                item.classList.add(baseCL[k]);
+            }
+
+            var single = document.createElement("div");
+            single.classList.add("portfolio-single");
+
+            var thumb = document.createElement("div");
+            thumb.classList.add("portfolio-thumb");
+
+            var pilldiv = document.createElement("div");
 
             var imgLink = document.createElement("a");
             imgLink.setAttribute("href", url);
 
             var eleImg = document.createElement("img");
             eleImg.setAttribute("src", img);
+            eleImg.classList.add("img-responsive");
 
-            var eleName = document.createElement("h3");
+            var icon = document.createElement("i");
+            icon.classList.add("fa");
+            icon.classList.add("fa-link");
+
+            var eleName = document.createElement("h2");
             eleName.innerHTML = name;
 
-            var eleDescription = document.createElement("p");
+            var pill = document.createElement("ul");
+            pill.classList.add("nav");
+            pill.classList.add("nav-pills");
+
+            var li = document.createElement("li");
+
+            var titlediv = document.createElement("div");
+            titlediv.classList.add("portfolio-info");
             //eleDescription.innerHTML = description + "</br>" + "Skills: " + domain;
-            eleDescription.innerHTML = "Skills: " + domain + " and " + subdomain + "</br>" + "Sought after by: ";
-
-            text.appendChild(eleName);
-            text.appendChild(eleDescription);
             imgLink.appendChild(eleImg);
-            imgdiv.appendChild(imgLink);
-            ele.appendChild(imgdiv);
-            ele.appendChild(text);
+            thumb.appendChild(imgLink);
+            li.appendChild(icon);
 
+            single.appendChild(thumb);
+            titlediv.appendChild(eleName);
+            item.appendChild(single);
+            item.appendChild(titlediv);
 
-            main.appendChild(ele);
-            //create a new div element, add in the photo, name, description, and domain, and link
-            //logic: if courseType.startswith(v1) -> coursera.org/course/<SLUG>
-            //else -> coursera.org/learn/<SLUG>
-
+            allitems.appendChild(item);
         }
     }
 
-})();
+//})();

@@ -1410,6 +1410,11 @@ Portfolio with right sidebar
   transition-duration: 0.8s;
 }
 
+.portfolio-thumb {
+  height: 261px;
+  width: 269px;
+}
+
 .isotope {
   -webkit-transition-property: height, width;
   -moz-transition-property: height, width;
