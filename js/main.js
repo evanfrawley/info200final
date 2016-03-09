@@ -15,7 +15,7 @@ jQuery(function($) {'use strict';
 		$("#video-container").fitVids();
 	}
 
-	/*//Initiat WOW JS
+	//Initiat WOW JS
 	new WOW().init();
 
 	// portfolio filter
@@ -29,7 +29,7 @@ jQuery(function($) {'use strict';
 			$('.masonery_area').masonry();//Masonry
 		}
 
-		var $portfolio_selectors = $('.portfolio-filter >li>a');
+		/*var $portfolio_selectors = $('.portfolio-filter >li>a');
 		
 		if($portfolio_selectors.length) {
 			
@@ -46,11 +46,11 @@ jQuery(function($) {'use strict';
 				$portfolio.isotope({ filter: selector });
 				return false;
 			});
-		}
+		}*/
 
 	});
 
-	*/
+
 
 
 	$('.timer').each(count);

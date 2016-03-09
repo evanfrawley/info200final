@@ -1010,16 +1010,12 @@ ul.elements li > i{
 **************************/
 
 .portfolio-single {
-  position: relative;
-}
+   position: relative;
+ }
 
-.portfolio-thumb {
-  position: relative;
-}
 
-.portfolio-thumb img {
-  width: 100%;
-}
+
+
 
 
 .portfolio-single:hover .portfolio-view{
@@ -1413,7 +1409,24 @@ Portfolio with right sidebar
 .portfolio-thumb {
   height: 261px;
   width: 269px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+
 }
+
+
+.portfolio-thumb>a>.img-responsive{
+
+  position: absolute;
+  height: 100%;
+  width: auto;
+  top: 0;
+  left: 0;
+}
+
+
 
 .isotope {
   -webkit-transition-property: height, width;
@@ -2136,6 +2149,7 @@ span.stButton_gradient,
 .price-one .btn-buynow  {
   background-color: #0d6fb1;
 }
+
 
 .price-two .btn-buynow  {
   background-color: #ac2429;
